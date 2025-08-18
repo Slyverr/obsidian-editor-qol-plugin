@@ -1,8 +1,9 @@
 import { Plugin } from "obsidian";
+import registerCheckboxHandlers from "./handlers/checkbox";
 import SettingsTab, { DEFAULT_SETTINGS, Settings } from "./settings";
 import { HandlerRegistrar } from "./types/event-handlers";
 
-const handlers: HandlerRegistrar[] = [];
+const handlers: HandlerRegistrar[] = [registerCheckboxHandlers];
 
 export default class EditorQoLPlugin extends Plugin {
 	settings: Settings;
