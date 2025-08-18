@@ -107,6 +107,8 @@ function syncGroup(
 export default function registerCheckboxHandlers(plugin: EditorQoLPlugin) {
 	plugin.registerEvent(
 		plugin.app.workspace.on("active-leaf-change", () => {
+			if (!plugin.settings.checkbox.enabled) return;
+
 			const view = plugin.app.workspace.getActiveViewOfType(MarkdownView);
 
 			oldContent = view?.editor.getValue() || "";
@@ -116,7 +118,7 @@ export default function registerCheckboxHandlers(plugin: EditorQoLPlugin) {
 
 	plugin.registerEvent(
 		plugin.app.workspace.on("editor-change", (editor) => {
-			if (locked) return;
+			if (!plugin.settings.checkbox.enabled || locked) return;
 
 			const groups = extractUpdatedGroups(oldContent, editor.getValue());
 			if (groups.length === 0) return;
