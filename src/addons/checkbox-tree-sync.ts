@@ -1,18 +1,11 @@
-import { MarkdownView } from "obsidian";
+import { Editor, MarkdownView } from "obsidian";
 import EditorQoLPlugin from "src/main";
-
-type MarkdownCheckbox = {
-	line: number;
-	text: string;
-	level: number;
-	checked: boolean;
-	updated: boolean;
-};
+import { MarkdownCheckbox } from "src/types/checkbox-tree-sync";
+import { Addon } from "src/types/global";
 
 const CHECKBOX_REGEX = /^(\t*)[-*+]\s+\[([ xX])\] /;
 
-let oldContent: string = "";
-let active: string = "";
+let oldContent = "";
 let locked = false;
 
 function extractUpdatedGroups(
@@ -104,15 +97,13 @@ function syncGroup(
 	return [i, current.checked];
 }
 
-export default function registerCheckboxHandlers(plugin: EditorQoLPlugin) {
+function register(plugin: EditorQoLPlugin): void {
 	plugin.registerEvent(
 		plugin.app.workspace.on("active-leaf-change", () => {
 			if (!plugin.settings.checkbox.enabled) return;
 
 			const view = plugin.app.workspace.getActiveViewOfType(MarkdownView);
-
 			oldContent = view?.editor.getValue() || "";
-			active = view?.getDisplayText() || "";
 		}),
 	);
 
@@ -141,3 +132,10 @@ export default function registerCheckboxHandlers(plugin: EditorQoLPlugin) {
 		}),
 	);
 }
+
+function unregister(plugin: EditorQoLPlugin): void {
+	oldContent = "";
+	locked = false;
+}
+
+export default { register, unregister } as Addon;

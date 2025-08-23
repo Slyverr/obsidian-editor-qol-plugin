@@ -1,9 +1,9 @@
 import { Plugin } from "obsidian";
-import registerCheckboxHandlers from "./handlers/checkbox";
+import checkboxTreeSync from "./addons/checkbox-tree-sync";
 import SettingsTab, { DEFAULT_SETTINGS, Settings } from "./settings";
-import { HandlerRegistrar } from "./types/event-handlers";
+import { Addon } from "./types/global";
 
-const handlers: HandlerRegistrar[] = [registerCheckboxHandlers];
+export const addons: Addon[] = [checkboxTreeSync];
 
 export default class EditorQoLPlugin extends Plugin {
 	settings: Settings;
@@ -14,10 +14,12 @@ export default class EditorQoLPlugin extends Plugin {
 		if (!Object.isEmpty(this.settings))
 			this.addSettingTab(new SettingsTab(this));
 
-		handlers.forEach((register) => register(this));
+		addons.forEach((addon) => addon.register(this));
 	}
 
-	async onunload() {}
+	async onunload() {
+		addons.forEach((addon) => addon.unregister(this));
+	}
 
 	async loadSettings() {
 		this.settings = Object.assign({}, DEFAULT_SETTINGS, await this.loadData());
