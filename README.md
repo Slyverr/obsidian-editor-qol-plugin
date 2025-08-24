@@ -10,8 +10,28 @@ More features coming soon!
 
 ## Installation
 
-You can install this plugin directly from the **Community Plugins** tab in Obsidian.
-Search for `Obsidian Editor QoL` and enable it.
+This plugin is currently not available in the Community Plugins tab as it is awaiting approval.
+
+To use it with the **BRAT plugin**:
+
+1. **Install BRAT**
+    - Go to **Settings → Community Plugins → Browse**
+    - Search for **BRAT** and click **Install**
+    - Click **Enable** after installation
+
+2. **Add Your Plugin via BRAT**
+    - Open the **Command Palette** (`Ctrl+P` or `Cmd+P`)
+    - Run **"BRAT: Add a beta plugin for testing"**
+    - Paste your plugin's GitHub URL (e.g., `https://github.com/slyverr/obsidian-editor-qol-plugin`)
+    - Click **Add Plugin** to install it
+
+3. **Enable Your Plugin**
+    - Go to **Settings → Community Plugins**
+    - Refresh the plugin list
+    - Find the plugin and click **Enable**
+
+4. **Configure Your Plugin**
+    - Access settings under **Settings → Community Plugins**
 
 ## Usage
 
