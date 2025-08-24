@@ -1,9 +1,9 @@
 {
-	"id": "obsidian-editor-qol",
+	"id": "editor-qol",
 	"name": "Editor QoL",
 	"version": "0.1.0",
 	"minAppVersion": "0.15.0",
-	"description": "Quality of life improvements to the obsidian's editor.",
+	"description": "Quality of life improvements/features to the editor.",
 	"author": "Slyverr",
 	"authorUrl": "https://github.com/Slyverr",
 	"fundingUrl": "https://ko-fi.com/Slyverr",
