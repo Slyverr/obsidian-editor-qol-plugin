@@ -67,7 +67,6 @@ function syncGroup(
 	lines: MarkdownCheckbox[],
 	start: number,
 ): [number, boolean] {
-	console.log("Calling with: ", start);
 	if (start < 0 || start >= lines.length) return [start, false];
 
 	const current = lines[start];
